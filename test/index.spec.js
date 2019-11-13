@@ -1,20 +1,7 @@
 const frisby = require('frisby')
-<<<<<<< HEAD
-// eslint-disable-next-line no-unused-vars
-const server = require('../server')
-
-const baseUrl = 'http://localhost:3000'
-describe('GET time', () => {
-  it('Simple test_db test', (done) => {
-    frisby
-      .fetch(baseUrl, {
-        method: 'GET',
-=======
 const env = require('../spec/support/env.json')
 // eslint-disable-next-line no-unused-vars
 const server = require('../server')
-
-const { baseUrl } = env.api
 
 describe('POST /auth/create-user', () => {
   it('Should create a new user', (done) => {
@@ -194,14 +181,11 @@ describe('GET /feed', () => {
         headers: {
           token: env.api.token,
         },
->>>>>>> endpoints-tests
       })
       .then((response) => {
         expect(response.status).toBe(200)
       })
       .done(done)
-<<<<<<< HEAD
-=======
   })
 })
 
@@ -235,6 +219,5 @@ describe('DELETE /gifs/<:gifId>', () => {
         expect(response.status).toBe(204)
       })
       .done(done)
->>>>>>> endpoints-tests
   })
 })
