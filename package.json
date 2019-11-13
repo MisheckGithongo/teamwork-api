@@ -1,0 +1,37 @@
+{
+  "name": "teamwork-api",
+  "version": "1.0.0",
+  "description": "teamwork-api",
+  "main": "server.js",
+  "scripts": {
+    "test": "jasmine",
+    "lint": "eslint *.js --ignore-pattern node_modules/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisheckGithongo/teamwork-api.git"
+  },
+  "author": "Misheck Mukuha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MisheckGithongo/teamwork-api/issues"
+  },
+  "homepage": "https://github.com/MisheckGithongo/teamwork-api#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "frisby": "^2.1.2",
+    "jasmine": "^3.5.0",
+    "pg": "^7.12.1"
+  }
+}
