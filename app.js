@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const pool = require('./db')
 
 const app = express()
 
@@ -10,5 +11,15 @@ app.use((req, res, next) => {
   next()
 })
 app.use(bodyParser.json())
+
+app.get('/', (req, res) => {
+  pool.query('SELECT NOW()')
+    .then((qRes) => {
+      res.status(200).json({ time: qRes.rows[0] })
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error })
+    })
+})
 
 module.exports = app
