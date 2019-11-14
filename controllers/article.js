@@ -18,3 +18,18 @@ exports.createArticle = (req, res) => {
       res.status(400).json({ error: error })
     })
 }
+
+exports.editArticle = (req, res) => {
+  const values = [req.body.title, req.body.article, req.params.articleId]
+  const text = 'UPDATE posts SET title = $1, body = $2 WHERE pid = $3 RETURNING title, body'
+  pool.query(text, values)
+    .then((qRes) => {
+      data = { message: 'Article successfully updated' }
+      data.title = qRes.rows[0].title
+      data.article = qRes.rows[0].body
+      res.status(200).json({ status: 'success', data: data })
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error })
+    })
+}

@@ -90,14 +90,13 @@ describe('endpoint tests', () => {
     })
   })
 
-  /*
   describe('PATCH /articles/<:articleId>', () => {
     it('Should edit an article', (done) => {
       frisby
-        .fetch(`${baseUrl}/articles/1`, {
+        .fetch(`${baseUrl}/articles/${env.api.articleId}`, {
           method: 'PATCH',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
           body: JSON.stringify({
             title: env.api.editedArticleTitle,
@@ -110,7 +109,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+/*
   describe('POST /articles/<articleId>/comment', () => {
     it('Should Create an article', (done) => {
       frisby
