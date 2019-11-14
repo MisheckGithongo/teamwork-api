@@ -3,6 +3,8 @@ const env = require('../spec/support/env.json')
 // eslint-disable-next-line no-unused-vars
 const server = require('../server')
 
+const { baseUrl } = env.api
+
 describe('POST /auth/create-user', () => {
   it('Should create a new user', (done) => {
     frisby
@@ -25,6 +27,7 @@ describe('POST /auth/create-user', () => {
       .done(done)
   })
 })
+/*
 
 describe('POST /auth/signin', () => {
   it('Should signin an authenticated user', (done) => {
@@ -174,7 +177,8 @@ describe('GET /gifs/<:gifId>', () => {
 })
 
 describe('GET /feed', () => {
-  it('Employees can view all articles or gifs, showing the most recently posted articles', (done) => {
+  it('Employees can view all articles or gifs, showing the most recently posted articles',
+   (done) => {
     frisby
       .fetch(`${baseUrl}/feed`, {
         method: 'GET',
@@ -221,3 +225,5 @@ describe('DELETE /gifs/<:gifId>', () => {
       .done(done)
   })
 })
+
+*/
