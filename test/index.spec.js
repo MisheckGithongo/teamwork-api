@@ -66,14 +66,14 @@ describe('POST /gifs', () => {
       .done(done)
   })
 })
-
+*/
 describe('POST /articles', () => {
   it('Should Create an article', (done) => {
     frisby
       .fetch(`${baseUrl}/articles`, {
         method: 'POST',
         headers: {
-          token: env.api.token,
+          token: process.env.TEST_TOKEN,
         },
         body: JSON.stringify({
           title: env.api.articleTitle,
@@ -87,6 +87,7 @@ describe('POST /articles', () => {
   })
 })
 
+/*
 describe('PATCH /articles/<:articleId>', () => {
   it('Should edit an article', (done) => {
     frisby
