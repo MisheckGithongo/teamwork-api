@@ -45,7 +45,7 @@ exports.signin = (req, res) => {
           }
           const token = jwt.sign(
             { userId: qRes.rows[0].uid, email: qRes.rows[0].email },
-            'RANDOM_TOKEN_SECRET',
+            process.env.RANDOM_TOKEN_SECRET,
             { expiresIn: '24h' },
           )
           const data = { token: token }
