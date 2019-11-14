@@ -27,7 +27,7 @@ describe('POST /auth/create-user', () => {
       .done(done)
   })
 })
-/*
+
 
 describe('POST /auth/signin', () => {
   it('Should signin an authenticated user', (done) => {
@@ -46,6 +46,7 @@ describe('POST /auth/signin', () => {
   })
 })
 
+/*
 describe('POST /gifs', () => {
   it('Should post a gif', (done) => {
     frisby
