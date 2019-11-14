@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 const jwt = require('jsonwebtoken')
 
 exports.createArticle = (req, res) => {
   const { token } = req.headers
-  console.log(process.env.RANDOM_TOKEN_SECRET)
   const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET)
   const { userId } = decodedToken
   const values = [userId, 'article', req.body.title, req.body.article]
