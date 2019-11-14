@@ -196,7 +196,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+*/
 
   describe('DELETE /articles/<:articleId>', () => {
     it('Employees can delete their articles', (done) => {
@@ -204,7 +204,7 @@ describe('endpoint tests', () => {
         .fetch(`${baseUrl}/articles/${env.api.articleId}`, {
           method: 'DELETE',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
         })
         .then((response) => {
@@ -213,6 +213,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
+  /*
 
   describe('DELETE /gifs/<:gifId>', () => {
     it('Employees can delete their gifs', (done) => {
