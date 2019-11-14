@@ -33,3 +33,16 @@ exports.editArticle = (req, res) => {
       res.status(400).json({ error: error })
     })
 }
+
+exports.deleteArticle = (req, res) => {
+  const values = [req.params.articleId]
+  const text = 'DELETE FROM posts WHERE pid = $1'
+  pool.query(text, values)
+    .then(() => {
+      data = { message: 'Article successfully deleted' }
+      res.status(204).json({ status: 'success', data: data })
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error })
+    })
+}
