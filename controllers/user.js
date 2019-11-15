@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const pool = require('../db')
 
 exports.createAccount = (req, res) => {
