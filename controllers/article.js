@@ -80,15 +80,14 @@ exports.articleComment = (req, res) => {
 }
 
 exports.singleArticle = (req, res) => {
-  pool.query(`SELECT pid, title, body, createdon FROM posts WHERE pid =${req.params.articleId}`)
+  pool.query(`SELECT pid, title, body, createdon FROM posts WHERE pid =${req.params.articleId} AND type = 'article'`)
   // eslint-disable-next-line consistent-return
     .then((qRes) => {
       if (!qRes.rows[0]) {
-        pool.end()
         return res.status(404).json({ error: 'Article not found' })
       }
       const values = [req.params.articleId]
-      const text = 'SELECT cid, comment, userid AS authorId FROM comments WHERE postid = $1'
+      const text = 'SELECT cid, comment, userid FROM comments WHERE postid = $1'
       pool.query(text, values)
         .then((q2Res) => {
           data = {}
@@ -96,16 +95,24 @@ exports.singleArticle = (req, res) => {
           data.createdOn = qRes.rows[0].createdon
           data.articleTitle = qRes.rows[0].title
           data.article = qRes.rows[0].body
-          data.comments = q2Res.rows
+          comments = q2Res.rows
+          const comments1 = comments.map((comment) => {
+            const data1 = {}
+            data1.commentId = comment.cid
+            data1.authorId = comment.userid
+            data1.comment = comment.comment
+            return (
+              data1
+            )
+          })
+          data.comments = comments1
           res.status(200).json({ status: 'success', data: data })
         })
         .catch((error) => {
-          pool.end()
           res.status(400).json({ error: error })
         })
     })
     .catch((error) => {
-      pool.end()
       res.status(400).json({ error: error })
     })
 }
