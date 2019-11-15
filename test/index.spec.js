@@ -112,7 +112,7 @@ describe('endpoint tests', () => {
   })
 
   describe('POST /articles/<articleId>/comment', () => {
-    it('Should Create an article', (done) => {
+    it('Should Create an article comment', (done) => {
       frisby
         .fetch(`${baseUrl}/articles/${env.api.articleId}/comment`, {
           method: 'POST',
@@ -129,14 +129,14 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-  /*
+
   describe('POST /gifs/<:gifId>/comment', () => {
-    it('Should Create an article', (done) => {
+    it('Should Create a gif comment', (done) => {
       frisby
         .fetch(`${baseUrl}/gifs/${env.api.gifId}/comment`, {
           method: 'POST',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
           body: JSON.stringify({
             comment: env.api.gifComment,
@@ -148,7 +148,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-*/
+
   describe('GET /articles/<:articleId>', () => {
     it('Employees can view a specific article.', (done) => {
       frisby

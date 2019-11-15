@@ -5,6 +5,7 @@ const gifCtrl = require('../controllers/gif')
 const router = express.Router()
 
 router.post('/', fileupload({ useTempFiles: true }), gifCtrl.createGif)
+router.post('/:gifId/comment', gifCtrl.gifComment)
 
 
 module.exports = router

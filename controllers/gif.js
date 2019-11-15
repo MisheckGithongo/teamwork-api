@@ -42,3 +42,34 @@ exports.createGif = (req, res) => {
     })
   }
 }
+exports.gifComment = (req, res) => {
+  pool.query(`SELECT title FROM posts WHERE pid =${req.params.gifId}`)
+    // eslint-disable-next-line consistent-return
+    .then((qRes) => {
+      if (!qRes.rows[0]) {
+        pool.end()
+        return res.status(404).json({ error: 'Gif not found' })
+      }
+      const { token } = req.headers
+      const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET)
+      const { userId } = decodedToken
+      const values = [req.body.comment, req.params.gifId, userId]
+      const text = 'INSERT INTO comments (comment, postId, userId, createdon) VALUES($1, $2, $3, NOW()) RETURNING comment,postId, createdon'
+      pool.query(text, values)
+        .then((q2Res) => {
+          data = { message: 'comment successfully created' }
+          data.createdOn = q2Res.rows[0].createdon
+          data.gifTitle = qRes.rows[0].title
+          data.comment = q2Res.rows[0].comment
+          res.status(201).json({ status: 'success', data: data })
+        })
+        .catch((error) => {
+          pool.end()
+          res.status(400).json({ error: error })
+        })
+    })
+    .catch((error) => {
+      pool.end()
+      res.status(400).json({ error: error })
+    })
+}
