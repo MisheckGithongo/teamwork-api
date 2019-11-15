@@ -1,5 +1,6 @@
 const frisby = require('frisby')
 const env = require('../spec/support/env.json')
+require('dotenv').config()
 // eslint-disable-next-line no-unused-vars
 const server = require('../server')
 
