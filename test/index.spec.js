@@ -164,14 +164,14 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-  /*
+
   describe('GET /gifs/<:gifId>', () => {
     it('Employees can view a specific gif post.', (done) => {
       frisby
         .fetch(`${baseUrl}/gifs/${env.api.gifId}`, {
           method: 'GET',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
         })
         .then((response) => {
@@ -180,7 +180,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-*/
+
   describe('GET /feed', () => {
     it('Employees can view all articles or gifs, showing the most recently posted articles',
       (done) => {
