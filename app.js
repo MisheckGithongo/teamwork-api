@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const userRoutes = require('./routes/user')
 const articleRoutes = require('./routes/article')
+const feedRoute = require('./routes/feed')
 
 const app = express()
 
@@ -17,5 +18,6 @@ app.use(bodyParser.json())
 
 app.use('/api/v1/auth', userRoutes)
 app.use('/api/v1', articleRoutes)
+app.use('/api/v1/feed', feedRoute)
 
 module.exports = app

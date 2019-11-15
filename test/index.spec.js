@@ -179,24 +179,23 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+*/
   describe('GET /feed', () => {
     it('Employees can view all articles or gifs, showing the most recently posted articles',
-     (done) => {
-      frisby
-        .fetch(`${baseUrl}/feed`, {
-          method: 'GET',
-          headers: {
-            token: env.api.token,
-          },
-        })
-        .then((response) => {
-          expect(response.status).toBe(200)
-        })
-        .done(done)
-    })
+      (done) => {
+        frisby
+          .fetch(`${baseUrl}/feed`, {
+            method: 'GET',
+            headers: {
+              token: process.env.TEST_TOKEN,
+            },
+          })
+          .then((response) => {
+            expect(response.status).toBe(200)
+          })
+          .done(done)
+      })
   })
-*/
 
   describe('DELETE /articles/<:articleId>', () => {
     it('Employees can delete their articles', (done) => {
@@ -213,8 +212,8 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-  /*
 
+/*
   describe('DELETE /gifs/<:gifId>', () => {
     it('Employees can delete their gifs', (done) => {
       frisby
