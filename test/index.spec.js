@@ -9,7 +9,7 @@ describe('endpoint tests', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
   })
   describe('POST /auth/create-user', () => {
-    it('Should create a new user', (done) => {
+    it('Should create a new user', async (done) => {
       frisby
         .fetch(`${baseUrl}/auth/create-user`, {
           method: 'POST',
@@ -147,14 +147,14 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+*/
   describe('GET /articles/<:articleId>', () => {
     it('Employees can view a specific article.', (done) => {
       frisby
         .fetch(`${baseUrl}/articles/${env.api.articleId}`, {
           method: 'GET',
           headers: {
-            token: env.api.token,
+            token: process.env.token,
           },
         })
         .then((response) => {
@@ -163,7 +163,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+  /*
   describe('GET /gifs/<:gifId>', () => {
     it('Employees can view a specific gif post.', (done) => {
       frisby
