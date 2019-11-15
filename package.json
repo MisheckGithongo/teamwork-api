@@ -4,6 +4,7 @@
   "description": "teamwork-api",
   "main": "server.js",
   "scripts": {
+    "pretest": "eslint --ignore-pattern node_modules/",
     "test": "jasmine",
     "lint": "eslint *.js --ignore-pattern node_modules/"
   },

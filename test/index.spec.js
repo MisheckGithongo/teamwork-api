@@ -109,14 +109,14 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-/*
+
   describe('POST /articles/<articleId>/comment', () => {
     it('Should Create an article', (done) => {
       frisby
         .fetch(`${baseUrl}/articles/${env.api.articleId}/comment`, {
           method: 'POST',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
           body: JSON.stringify({
             comment: env.api.articleComment,
@@ -128,7 +128,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-
+  /*
   describe('POST /gifs/<:gifId>/comment', () => {
     it('Should Create an article', (done) => {
       frisby
