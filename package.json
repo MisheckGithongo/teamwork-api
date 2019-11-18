@@ -36,8 +36,10 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6-alpha.6",
     "frisby": "^2.1.2",
+    "fs": "0.0.1-security",
     "jasmine": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
     "pg": "^7.12.1"
   }
 }

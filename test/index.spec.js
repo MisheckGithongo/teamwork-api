@@ -1,4 +1,6 @@
 const frisby = require('frisby')
+const path = require('path')
+const fs = require('fs')
 const env = require('../spec/support/env.json')
 require('dotenv').config()
 // eslint-disable-next-line no-unused-vars
@@ -7,7 +9,7 @@ const server = require('../server')
 const { baseUrl } = env.api
 describe('endpoint tests', () => {
   beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
   })
   describe('POST /auth/create-user', () => {
     it('Should create a new user', async (done) => {
@@ -50,19 +52,29 @@ describe('endpoint tests', () => {
     })
   })
 
-  /*
   describe('POST /gifs', () => {
     it('Should post a gif', (done) => {
+      const gif = path.resolve('img', './test.gif')
+      const content = fs.createReadStream(gif)
+      const formData = frisby.formData()
+      formData.append('image', content)
+      formData.append('title', 'test gif')
       frisby
+        .setup({
+          request: {
+            // eslint-disable-next-line quote-props
+            'timeout': 360000,
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        })
         .fetch(`${baseUrl}/gifs`, {
           method: 'POST',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
-          body: JSON.stringify({
-            image: env.api.gifUrl,
-            title: env.api.gifTitle,
-          }),
+          body: formData,
         })
         .then((response) => {
           expect(response.status).toBe(201)
@@ -70,7 +82,8 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-  */
+
+
   describe('POST /articles', () => {
     it('Should Create an article', (done) => {
       frisby
