@@ -114,3 +114,26 @@ exports.singleGif = (req, res) => {
       res.status(400).json({ error: error })
     })
 }
+
+exports.deleteGif = (req, res) => {
+  pool.query(`DELETE FROM posts WHERE pid = ${req.params.gifId} RETURNING body`)
+    .then((qRes) => {
+      const { body } = qRes.rows[0]
+      const url = body.split('/')
+      const url1 = url[url.length - 1]
+      const id = url1.split('.')
+      const publicId = id[0]
+      // eslint-disable-next-line no-unused-vars
+      cloudinary.uploader.destroy(publicId, (err, result) => {
+        if (err) {
+          res.status(400).json({ message: 'An error occurred while deleting from cloudinary' })
+        } else {
+          data = { message: 'gif post successfully deleted' }
+          res.status(200).json({ status: 'success', data: data })
+        }
+      })
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error })
+    })
+}
