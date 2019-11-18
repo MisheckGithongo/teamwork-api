@@ -36,10 +36,10 @@ exports.editArticle = (req, res) => {
 }
 
 exports.deleteArticle = (req, res) => {
-  pool.query(`DELETE FROM posts WHERE pid = ${req.params.articleId}; DELETE FROM comments WHERE  postid = ${req.params.articleId}`)
+  pool.query(`DELETE FROM posts WHERE pid = ${req.params.articleId}`)
     .then(() => {
       data = { message: 'Article successfully deleted' }
-      res.status(204).json({ status: 'success', data: data })
+      res.status(200).json({ status: 'success', data: data })
     })
     .catch((error) => {
       res.status(400).json({ error: error })

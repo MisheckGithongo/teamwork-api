@@ -208,16 +208,19 @@ describe('endpoint tests', () => {
           },
         })
         .then((response) => {
-          expect(response.status).toBe(204)
+          expect(response.status).toBe(200)
         })
         .done(done)
     })
   })
 
-/*
+
   describe('DELETE /gifs/<:gifId>', () => {
     it('Employees can delete their gifs', (done) => {
       frisby
+        .setup({
+          request: { timeout: 360000 },
+        })
         .fetch(`${baseUrl}/gifs/${env.api.gifId}`, {
           method: 'DELETE',
           headers: {
@@ -225,11 +228,9 @@ describe('endpoint tests', () => {
           },
         })
         .then((response) => {
-          expect(response.status).toBe(204)
+          expect(response.status).toBe(200)
         })
         .done(done)
     })
   })
-
-  */
 })
