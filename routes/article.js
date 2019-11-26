@@ -3,12 +3,13 @@ const express = require('express')
 const router = express.Router()
 
 const articleCtrl = require('../controllers/article')
+const auth = require('../middleware/auth')
 
 
-router.post('/articles', articleCtrl.createArticle)
-router.patch('/articles/:articleId', articleCtrl.editArticle)
-router.delete('/articles/:articleId', articleCtrl.deleteArticle)
-router.post('/articles/:articleId/comment', articleCtrl.articleComment)
-router.get('/articles/:articleId', articleCtrl.singleArticle)
+router.post('/', auth, articleCtrl.createArticle)
+router.patch('/:articleId', auth, articleCtrl.editArticle)
+router.delete('/:articleId', auth, articleCtrl.deleteArticle)
+router.post('/:articleId/comment', auth, articleCtrl.articleComment)
+router.get('/:articleId', auth, articleCtrl.singleArticle)
 
 module.exports = router

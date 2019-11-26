@@ -64,7 +64,7 @@ exports.articleComment = (req, res) => {
           data = { message: 'Comment successfully created' }
           data.createdOn = q2Res.rows[0].createdon
           data.articleTitle = qRes.rows[0].title
-          data.article = qRes.rows[0].article
+          data.article = qRes.rows[0].body
           data.comment = q2Res.rows[0].comment
           res.status(201).json({ status: 'success', data: data })
         })
@@ -93,7 +93,7 @@ exports.singleArticle = (req, res) => {
           data = {}
           data.id = qRes.rows[0].pid
           data.createdOn = qRes.rows[0].createdon
-          data.articleTitle = qRes.rows[0].title
+          data.title = qRes.rows[0].title
           data.article = qRes.rows[0].body
           comments = q2Res.rows
           const comments1 = comments.map((comment) => {
