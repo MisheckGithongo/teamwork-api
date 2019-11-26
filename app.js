@@ -17,6 +17,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json())
 
+app.use('/', express.static('public'))
+
 app.use('/api/v1/auth', userRoutes)
 app.use('/api/v1/articles', articleRoutes)
 app.use('/api/v1/feed', feedRoute)
