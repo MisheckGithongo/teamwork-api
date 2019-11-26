@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "eslint --ignore-pattern node_modules/",
     "test": "jasmine",
-    "lint": "eslint *.js --ignore-pattern node_modules/"
+    "lint": "eslint *.js --ignore-pattern node_modules/",
+    "coverage": "npm run pretest && jasmine --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
