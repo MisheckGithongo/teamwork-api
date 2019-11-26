@@ -74,7 +74,6 @@ exports.articleComment = (req, res) => {
         })
     })
     .catch((error) => {
-      pool.end()
       res.status(400).json({ error: error })
     })
 }
