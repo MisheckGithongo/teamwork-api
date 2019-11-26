@@ -16,6 +16,9 @@ describe('endpoint tests', () => {
       frisby
         .fetch(`${baseUrl}/auth/create-user`, {
           method: 'POST',
+          headers: {
+            token: process.env.API_ADMIN_TOKEN,
+          },
           body: JSON.stringify({
             firstname: env.api.firstname,
             lastname: env.api.lastname,
@@ -46,7 +49,7 @@ describe('endpoint tests', () => {
           }),
         })
         .then((response) => {
-          expect(response.status).toBe(201)
+          expect(response.status).toBe(200)
         })
         .done(done)
     })
@@ -168,7 +171,7 @@ describe('endpoint tests', () => {
         .fetch(`${baseUrl}/articles/${env.api.articleId}`, {
           method: 'GET',
           headers: {
-            token: process.env.token,
+            token: process.env.TEST_TOKEN,
           },
         })
         .then((response) => {
@@ -237,7 +240,7 @@ describe('endpoint tests', () => {
         .fetch(`${baseUrl}/gifs/${env.api.gifId}`, {
           method: 'DELETE',
           headers: {
-            token: env.api.token,
+            token: process.env.TEST_TOKEN,
           },
         })
         .then((response) => {

@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 
 app.use('/api/v1/auth', userRoutes)
-app.use('/api/v1', articleRoutes)
+app.use('/api/v1/articles', articleRoutes)
 app.use('/api/v1/feed', feedRoute)
 app.use('/api/v1/gifs', gifRoutes)
 

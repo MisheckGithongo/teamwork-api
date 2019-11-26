@@ -20,9 +20,7 @@ exports.createGif = (req, res) => {
       if (err) {
         res.status(400).json({ message: 'An error occurred while uploading your file' })
       } else {
-        const { token } = req.headers
-        const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET)
-        const { userId } = decodedToken
+        const { userId } = req
         const values = [userId, 'gif', req.body.title, result.url]
         const text = 'INSERT INTO posts (userId, type, title, body, createdon) VALUES($1, $2, $3, $4, NOW()) RETURNING pid, createdon, title, body'
         pool.query(text, values)
@@ -90,7 +88,7 @@ exports.singleGif = (req, res) => {
           data.id = qRes.rows[0].pid
           data.createdOn = qRes.rows[0].createdon
           data.gifTitle = qRes.rows[0].title
-          data.imageUrl = qRes.rows[0].body
+          data.url = qRes.rows[0].body
           const comments = q2Res.rows
           const comments1 = comments.map((comment) => {
             const data1 = {}

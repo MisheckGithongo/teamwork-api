@@ -45,13 +45,16 @@ exports.signin = (req, res) => {
             res.status(401).json({ error: error })
           }
           const token = jwt.sign(
-            { userId: qRes.rows[0].uid, email: qRes.rows[0].email },
+            { userId: qRes.rows[0].uid, email: qRes.rows[0].email, role: qRes.rows[0].role },
             process.env.RANDOM_TOKEN_SECRET,
             { expiresIn: '24h' },
           )
           const data = { token: token }
           data.userId = qRes.rows[0].uid
-          res.status(201).json({ status: 'success', data: data })
+          res.status(200).json({ status: 'success', data: data })
+        })
+        .catch(() => {
+          res.status(400).json({ error: 'Invalid Password' })
         })
     })
     .catch((error) => {
