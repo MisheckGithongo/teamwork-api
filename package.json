@@ -4,9 +4,8 @@
   "description": "teamwork-api",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine",
-    "lint": "eslint *.js --ignore-pattern node_modules/",
-    "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls"
+    "test": "jasmine && nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint *.js --ignore-pattern node_modules/"
   },
   "repository": {
     "type": "git",
