@@ -2,7 +2,7 @@ module.exports = {
 
     "extends": "airbnb",
     "rules": {
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": "off",
         "semi": ["error", "never"],
         "quotes": ["error", "single"],
         "no-unused-vars": "warn",
