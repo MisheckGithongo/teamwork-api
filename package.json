@@ -4,7 +4,7 @@
   "description": "teamwork-api",
   "main": "server.js",
   "scripts": {
-    "pretest": "eslint --ignore-pattern node_modules/",
+    "pretest": "eslint *.js --ignore-pattern node_modules/",
     "test": "nyc jasmine && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint *.js --ignore-pattern node_modules/"
   },
