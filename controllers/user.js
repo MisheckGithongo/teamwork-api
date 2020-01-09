@@ -8,12 +8,12 @@ exports.createAccount = (req, res) => {
     const values = [req.body.firstname, req.body.lastname,
       req.body.email, hash, req.body.gender,
       req.body.jobRole, req.body.department, req.body.address]
-    const text = 'INSERT INTO users (firstname, lastname, email, password, gender, jobrole, department, address, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, NOW()) RETURNING uid, email'
+    const text = 'INSERT INTO users (firstname, lastname, email, password, gender, jobrole, department, address, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, NOW()) RETURNING uid, email, role'
     pool.query(text, values)
       .then((qRes) => {
         data = { message: 'User account successfully created' }
         data.token = jwt.sign(
-          { userId: qRes.rows[0].uid, email: qRes.rows[0].email }, process.env.RANDOM_TOKEN_SECRET,
+          { userId: qRes.rows[0].uid, email: qRes.rows[0].email, role: qRes.rows[0].role }, process.env.RANDOM_TOKEN_SECRET,
           { expiresIn: '24h' },
         )
         data.userId = qRes.rows[0].uid
@@ -29,8 +29,8 @@ exports.createAccount = (req, res) => {
 }
 
 exports.signin = (req, res) => {
-  const values = [req.body.email]
-  const text = 'SELECT * FROM users WHERE email = $1'
+  const values = [req.body.email, req.body.username]
+  const text = 'SELECT * FROM users WHERE email = $1 OR email = $2'
   pool.query(text, values)
     // eslint-disable-next-line consistent-return
     .then((qRes) => {

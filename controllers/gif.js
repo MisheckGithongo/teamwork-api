@@ -45,7 +45,6 @@ exports.gifComment = (req, res) => {
     // eslint-disable-next-line consistent-return
     .then((qRes) => {
       if (!qRes.rows[0]) {
-        pool.end()
         return res.status(404).json({ error: 'Gif not found' })
       }
       const { token } = req.headers
@@ -62,12 +61,10 @@ exports.gifComment = (req, res) => {
           res.status(201).json({ status: 'success', data: data })
         })
         .catch((error) => {
-          pool.end()
           res.status(400).json({ error: error })
         })
     })
     .catch((error) => {
-      pool.end()
       res.status(400).json({ error: error })
     })
 }
@@ -108,7 +105,6 @@ exports.singleGif = (req, res) => {
         })
     })
     .catch((error) => {
-      pool.end()
       res.status(400).json({ error: error })
     })
 }

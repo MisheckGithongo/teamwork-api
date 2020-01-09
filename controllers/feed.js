@@ -31,7 +31,6 @@ module.exports.feed = (req, res) => {
       res.status(200).json({ status: 'success', data: posts })
     })
     .catch((error) => {
-      pool.end()
       res.status(400).json({ error: error })
     })
 }

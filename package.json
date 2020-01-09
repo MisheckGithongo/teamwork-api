@@ -4,8 +4,8 @@
   "description": "teamwork-api",
   "main": "server.js",
   "scripts": {
-    "pretest": "eslint --ignore-pattern node_modules/",
-    "test": "jasmine",
+    "pretest": "eslint *.js --ignore-pattern node_modules/",
+    "test": "nyc jasmine && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint *.js --ignore-pattern node_modules/"
   },
   "repository": {
@@ -19,13 +19,15 @@
   },
   "homepage": "https://github.com/MisheckGithongo/teamwork-api#readme",
   "devDependencies": {
+    "coveralls": "^3.0.8",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
