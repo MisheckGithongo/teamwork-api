@@ -55,6 +55,21 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
+  describe('GET /auth/user', () => {
+    it('Should get user details', (done) => {
+      frisby
+        .fetch(`${baseUrl}/auth/user`, {
+          method: 'GET',
+          headers: {
+            token: process.env.TEST_TOKEN,
+          },
+        })
+        .then((response) => {
+          expect(response.status).toBe(200)
+        })
+        .done(done)
+    })
+  })
 
   describe('POST /gifs', () => {
     it('Should post a gif', (done) => {
