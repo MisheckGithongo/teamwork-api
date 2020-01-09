@@ -55,7 +55,7 @@ describe('endpoint tests', () => {
         .done(done)
     })
   })
-  fdescribe('GET /auth/user', () => {
+  describe('GET /auth/user', () => {
     it('Should get user details', (done) => {
       frisby
         .fetch(`${baseUrl}/auth/user`, {
